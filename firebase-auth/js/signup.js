@@ -12,6 +12,18 @@ signUpForm.addEventListener("submit", function(evt) {
     //with the email and password
     //after the account is created, then use
     //the .updateProfile() method to set the display name
+    var promise = firebase.auth().createUserWithEmailAndPassword(emailInput.value, passwordInput.value)
+        .then(function(user) {
+            return user.updateProf({
+                displayName: displayNameInput.value
+            });
+        })
+        .then(function() {
+            window.location = "secure.html";
+        })
+        .catch(function(err) {
+            alert(err.message); 
+        });
 
 
 
