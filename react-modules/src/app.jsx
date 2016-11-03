@@ -31,6 +31,8 @@ import "./css/main.css";
 //see https://developer.github.com/v3/search/#search-repositories
 const githubSearchURL = "https://api.github.com/search/repositories?per_page=30&q=";
 
+import SearchForm from "./search-form.jsx"
+
 export default class extends React.Component {
     constructor(props) {
         super(props);
@@ -44,7 +46,8 @@ export default class extends React.Component {
     render() {
         return (
             <main className="container">
-                <h1>Hello React!</h1>
+                <h1>Search Repos</h1>
+                <SearchForm placeholder="name of repo"/>
             </main>
         );
     }
