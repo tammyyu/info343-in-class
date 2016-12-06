@@ -80,4 +80,29 @@ function fetchBars(latlng) {
 
     //TODO: fetch the nearby bars
     //and add them to the map
+    var url = "/api/v1/search";
+    url += "?lat=" + latlng.lat;
+    url+= "&lng=" + latlng.lng;
+    console.log("fetching", url);
+    fetch(url)
+        .then(function(response) {
+            return response.json
+        })
+        .then(function(data) {
+            console.log(data);
+            data.businesses.forEach(function(rec) {
+                var blatlng = L.latlng(rec.location.coordinate.latitude, rec.location.coordinate.longitude);
+                var marker = L.circleMaker(blatlng).addTo(map);
+
+                var divPopup = document.createElement("div");
+                var h2 = divPopup.appendChild(document.createElement("h2"));
+                h2.textContent = rec.name;
+                img.src = rec.rating_img_url;
+                img.alt = "rating is " + rec.rating + " stars";
+                marker.bindPopup(divPopup);
+            });
+        })
+        .catch(function(err) {
+            console.error(err);
+        })
 } 

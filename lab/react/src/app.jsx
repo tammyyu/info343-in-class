@@ -11,11 +11,19 @@ import SearchCity from './SearchCity.jsx';
 // Familiarize yourself with React's lifecycle methods : https://facebook.github.io/react/docs/react-component.html
 const url = 'http://api.openweathermap.org/data/2.5/weather?q=';
 // Put your key after the '='
-const key = '&APPID=';
+const key = '&APPID=a5203b569723340e24c7010a0d70d808';
 
 export default class extends React.Component {
     constructor(props) {
         super(props);
+		this.state = {};
+    }
+
+	componentDidMount() {
+        fetch(url + "Seattle" + key)
+            .then(response => response.json())
+			//.then(data => console.log(data));
+            .then(data => this.setState({weather: data}));            
     }
 	
 	// This function is for part 2. It looks at the state property for Fahrenheit (which you will have to define)
@@ -30,7 +38,8 @@ export default class extends React.Component {
 	// 	}
 	// }
 
-    render() {    	
+    render() {  
+
         return (
         	<div>
 	        	<p className="center-text">Replace this with your app</p>

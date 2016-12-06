@@ -5,8 +5,17 @@ export default class extends React.Component {
 		super(props);
 	}
 
+
 	render() {		
-		return <p className="center-text">Replace this with your weather display element.</p>;
+		var weather;
+
+		if (this.state.weather) {
+			weather = this.state.weather.results.map(w => <Weather key={w.id} weather={w} />);
+		}
+		
+		return (
+			<p className="center-text">{}</p>
+		);
 	}
 }
 		

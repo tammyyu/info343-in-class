@@ -110,10 +110,8 @@ logValue("2016-10-27", formatAsDate);
 var someNumber = 123456789;
 //logValue(...)
 
-
-
-
-
+logValue(someNumber, formatAsNumber);
+logValue(someNumber, formatAsCurrency);
 
 console.groupEnd();
 
@@ -191,7 +189,9 @@ console.log("property names:", propNames);
  */
 
 
-
+propNames.forEach(function(name) {
+    console.log(name, "=", course[name]);
+});
 
 
 
@@ -351,7 +351,20 @@ console.log("Total count", formatAsNumber(totalCount));
  * just reverse the logic in your compare function.
  */
 
+males.sort(function(rec1, rec2) {
+    return rec2.count - rec1.count;
+});
 
+var mostPopMaleRecs = males.slice(0, 10);
+console.log("Most popular male records", mostPopMaleRecs);
+
+var mostPopMaleNames = males.map(function(rec) {
+    return rec.name;
+})
+
+console.log("Most popular male names as array", mostPopMaleNames);
+console.log("Most popular male names as single string");
+mostPopMaleNames.join(", ")
 
 /**
  * PRACTICE
